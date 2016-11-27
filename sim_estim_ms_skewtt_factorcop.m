@@ -46,14 +46,14 @@ range_x = [-1000, -500, -400, -300, linspace(-200, -40, 10), -30, linspace(-15, 
 startval              = theta;
 lower                 = [zeros(1 ,2*K), 1/300, 1/300, -1, -1, 0, 0];
 upper                 = [999*ones(1, 2*K), 1/3, 1/3, 1, 1, 1, 1];
-options_patternsearch = psoptimset('fmincon');
-options_patternsearch = psoptimset(options_patternsearch, 'Display', 'iter', 'MaxIter', +Inf,...
-    'MaxFunEvals', +Inf,'TolFun', 1e-04, 'CompletePoll', 'on', 'cache', 'off', 'MeshAccelerator', 'on');
+options = optimoptions('fmincon');
+options = optimoptions(options, 'Algorithm', 'interior-point', 'Display', 'iter', 'MaxIter', +Inf,...
+    'MaxFunEvals', +Inf,'TolFun', 1e-04);
 
 % estimate using fmincon
 profile on
     [theta_hat, ~, exitflag] = fmincon(@(theta) loglik_ms_skewtt_factorcop(theta, simdata, range_x, abscissas, weights),...
-        startval, [], [], [], [], lower, upper,[], options_patternsearch);
+        startval, [], [], [], [], lower, upper,[], options);
 profile viewer
 
 % final call to likelihood function

@@ -7,7 +7,7 @@ if nargin == 3;
     seed = 1;   
 end
 
-rng(seed);
+rng(seed, 'twister');
 
 % simulate
 if length(theta) ~= K+2
@@ -17,9 +17,9 @@ else
     skew   = theta(end);
     beta   = theta(1:K);
     eps    = trnd(1/inv_nu, S, K); % simulate epsilon from t distribution
-    Z      = skewt_rnd(1/inv_nu, skew, S, seed)'; % simulate skew - t common factor
+    Z      = skewtdis_rnd(1/inv_nu, skew, S, seed)'; % simulate skew - t common factor
     X      = NaN(S, K);
     for i = 1:K
-        X(:, i) = beta(i)*Z + eps(:, i);
+        X(:, i) = beta(i)*Z' + eps(:, i);
     end;
 end;

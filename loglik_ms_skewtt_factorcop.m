@@ -36,8 +36,8 @@ p11       = theta(end-1); % transition matrix probabilities
 p22       = theta(end);
 
 % reorganize parameters for call to pdf
-theta_s1 = [lambda_s1, 1/nu_s1, 1/nu_s1, psi_s1]; % [loadings, inverse df for z and eps, skew for z]
-theta_s2 = [lambda_s2, 1/nu_s2, 1/nu_s2, psi_s2]; % [loadings, inverse df for z and eps, skew for z]
+theta_s1 = [lambda_s1, 1/nu_s1, psi_s1]; % [loadings, inverse df for z and eps, skew for z]
+theta_s2 = [lambda_s2, 1/nu_s2, psi_s2]; % [loadings, inverse df for z and eps, skew for z]
 
 % obtain x, using state dependent inverse of Git
 x_s1 = G_inverse_skewt_t_factorcop(theta_s1, data, range_x, abscissas, weights);
