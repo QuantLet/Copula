@@ -18,9 +18,9 @@ Input:
 - df_s2: degree of freedom parameter, first regime
 - skew_s1: skewness parameter, first regime 
 - skew_s2: skewness parameter, second regime
-- p11, p22: % transition matrix probabilities
+- p11, p22: transition matrix probabilities
 
-Example: Choose parameters like:
+Example:
 -T:           = 1000; % number of observations
 -loadings_s1: = [1 2 3]; % common factor loadings
 -loadings_s2: = [4 4 4];
